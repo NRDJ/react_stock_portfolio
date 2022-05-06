@@ -41,6 +41,14 @@ var Portfolio = function (_React$Component) {
       var portfolio = this.state.portfolio;
 
 
+      var portfolio_market_value = portfolio.reduce(function (sum, stock) {
+        return stock.shares_owned * stock.market_price + sum;
+      }, 0);
+      var portfolio_cost = portfolio.reduce(function (sum, stock) {
+        return stock.shares_owned * stock.cost_per_share + sum;
+      }, 0);
+      var portfolio_gain_loss = portfolio_market_value - portfolio_cost;
+
       return React.createElement(
         'div',
         { className: 'container' },
@@ -156,6 +164,26 @@ var Portfolio = function (_React$Component) {
                   );
                 })
               )
+            )
+          ),
+          React.createElement(
+            'div',
+            { className: 'col-12 col-md-6' },
+            React.createElement(
+              'h4',
+              { className: 'mb-3' },
+              'Portfolio value: $ ',
+              portfolio_market_value
+            )
+          ),
+          React.createElement(
+            'div',
+            { className: 'col-12 col-md-6' },
+            React.createElement(
+              'h4',
+              { className: 'mb-3' },
+              'Portfolio gain/loss: $ ',
+              portfolio_gain_loss
             )
           )
         )
