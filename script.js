@@ -107,6 +107,10 @@ var Portfolio = function (_React$Component) {
                       market_price = stock.market_price;
 
 
+                  var market_value = shares_owned * market_price;
+                  var unrealized_gain_loss = market_value - shares_owned * cost_per_share;
+                  // Adopting the underscore_style for consistency
+
                   return React.createElement(
                     'tr',
                     { key: index },
@@ -130,8 +134,16 @@ var Portfolio = function (_React$Component) {
                       null,
                       React.createElement('input', { type: 'number', name: 'market_price', value: market_price })
                     ),
-                    React.createElement('td', null),
-                    React.createElement('td', null),
+                    React.createElement(
+                      'td',
+                      null,
+                      market_value
+                    ),
+                    React.createElement(
+                      'td',
+                      null,
+                      unrealized_gain_loss
+                    ),
                     React.createElement(
                       'td',
                       null,
