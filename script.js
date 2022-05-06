@@ -34,10 +34,22 @@ var Portfolio = function (_React$Component) {
     };
 
     _this.removeStock = _this.removeStock.bind(_this);
+    _this.handleChange = _this.handleChange.bind(_this);
     return _this;
   }
 
   _createClass(Portfolio, [{
+    key: 'handleChange',
+    value: function handleChange(event, index) {
+      var portfolio = this.state.portfolio.slice(); // shallow copy
+      var _event$target = event.target,
+          name = _event$target.name,
+          value = _event$target.value;
+
+      portfolio[index][name] = value;
+      this.setState({ portfolio: portfolio });
+    }
+  }, {
     key: 'removeStock',
     value: function removeStock(index) {
       var portfolio = this.state.portfolio.slice(); // shallow copy
@@ -141,17 +153,23 @@ var Portfolio = function (_React$Component) {
                     React.createElement(
                       'td',
                       null,
-                      React.createElement('input', { type: 'number', name: 'shares_owned', value: shares_owned })
+                      React.createElement('input', { onChange: function onChange(e) {
+                          return _this2.handleChange(e, index);
+                        }, type: 'number', name: 'shares_owned', value: shares_owned })
                     ),
                     React.createElement(
                       'td',
                       null,
-                      React.createElement('input', { type: 'number', name: 'cost_per_share', value: cost_per_share })
+                      React.createElement('input', { onChange: function onChange(e) {
+                          return _this2.handleChange(e, index);
+                        }, type: 'number', name: 'cost_per_share', value: cost_per_share })
                     ),
                     React.createElement(
                       'td',
                       null,
-                      React.createElement('input', { type: 'number', name: 'market_price', value: market_price })
+                      React.createElement('input', { onChange: function onChange(e) {
+                          return _this2.handleChange(e, index);
+                        }, type: 'number', name: 'market_price', value: market_price })
                     ),
                     React.createElement(
                       'td',
